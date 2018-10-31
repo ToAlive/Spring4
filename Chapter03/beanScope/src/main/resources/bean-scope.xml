@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--基于xml设置bean的作用域-->
+    <!--使用scope属性设置bean的作用域-->
+    <bean id="notepad" class="Notepad" scope="prototype"></bean>
+
+    <!--在xml中声明作用域代理-->
+    <!--若使用xml配置会话或请求作用域的bean，那么就不能使用@Scope注解及其proxyMode属性了
+       <bean>元素的scope属性能够设置bean的作用域，但是该怎样指定代理模式呢？
+        xml中设置会话、请求代理模式需要使用到aop命名空间的一个新元素
+    -->
+    <bean id="cart" class="ShoppingCart" scope="session">
+        <aop:scoped-proxy/>
+    </bean>
+</beans>
